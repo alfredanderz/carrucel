@@ -235,7 +235,7 @@ function updatePhotoCount() {
 // Guardar en LocalStorage
 function savePhotosToStorage() {
   try {
-    localStorage.setItem("pwa-camera-photos", JSON.stringify(photos));
+    localStorage.setItem("carrucel-photos", JSON.stringify(photos));
   } catch (error) {
     console.error("❌ Error guardando fotos:", error);
     alert("Error: Demasiadas fotos guardadas. Borra algunas.");
@@ -245,7 +245,7 @@ function savePhotosToStorage() {
 // Cargar desde LocalStorage
 function loadPhotosFromStorage() {
   try {
-    const stored = localStorage.getItem("pwa-camera-photos");
+    const stored = localStorage.getItem("carrucel-photos");
     if (stored) {
       photos = JSON.parse(stored);
       photos.forEach((photo) => addPhotoToGallery(photo));

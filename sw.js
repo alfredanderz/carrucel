@@ -1,4 +1,4 @@
-const CACHE_NAME = "camara-pwa-v1";
+const CACHE_NAME = "carrucel-v1";
 const urlsToCache = [
   "./",
   "./index.html",

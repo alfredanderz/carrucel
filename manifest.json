@@ -1,7 +1,7 @@
 {
-  "name": "Cámara PWA",
-  "short_name": "CamaraPWA",
-  "description": "Aplicación para tomar fotos con soporte offline",
+  "name": "Carrucel - Galería de Fotos",
+  "short_name": "Carrucel",
+  "description": "Toma fotos y crea tu carrusel personal",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
