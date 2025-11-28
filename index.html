@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cámara PWA</title>
+    <meta name="theme-color" content="#667eea" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>📷 Cámara PWA</h1>
+      <p class="subtitle">Toma fotos y guárdalas offline</p>
+
+      <button id="openCamera" class="btn btn-primary">Abrir Cámara</button>
+
+      <div id="cameraContainer" class="camera-container">
+        <video id="video" autoplay playsinline></video>
+        <div class="camera-controls">
+          <button id="switchCamera" class="btn btn-secondary">
+            🔄 Cambiar
+          </button>
+          <button id="takePhoto" class="btn btn-success">📸 Foto</button>
+        </div>
+      </div>
+
+      <div id="photoContainer" class="photo-container">
+        <h3>Foto Capturada:</h3>
+        <img id="photoResult" src="" alt="Foto" />
+        <div class="photo-actions">
+          <button id="savePhoto" class="btn btn-success">💾 Guardar</button>
+          <button id="retakePhoto" class="btn btn-warning">🔄 Nueva</button>
+        </div>
+      </div>
+
+      <!-- NUEVO: Galería de fotos -->
+      <div id="gallery" class="gallery">
+        <h3>📸 Mis Fotos (<span id="photoCount">0</span>)</h3>
+        <div id="photoGallery" class="photo-gallery"></div>
+        <button id="clearGallery" class="btn btn-danger" style="display: none">
+          🗑️ Borrar Todo
+        </button>
+      </div>
+
+      <canvas id="canvas" style="display: none"></canvas>
+    </div>
+
+    <script src="./app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("./sw.js")
+          .then(() => console.log("✅ Service Worker registrado"))
+          .catch((err) => console.error("❌ Error SW:", err));
+      }
+    </script>
+  </body>
+</html>
