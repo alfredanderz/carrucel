@@ -16,12 +16,15 @@
       <button id="openCamera" class="btn btn-primary">Abrir Cámara</button>
 
       <div id="cameraContainer" class="camera-container">
+        <div class="camera-indicator">
+          <span id="cameraIndicator">📷 Cámara Trasera</span>
+        </div>
         <video id="video" autoplay playsinline></video>
         <div class="camera-controls">
           <button id="switchCamera" class="btn btn-secondary">
-            🔄 Cambiar
+            🔄 Cambiar Cámara
           </button>
-          <button id="takePhoto" class="btn btn-success">📸 Foto</button>
+          <button id="takePhoto" class="btn btn-success">📸 Tomar Foto</button>
         </div>
       </div>
 
@@ -34,7 +37,6 @@
         </div>
       </div>
 
-      <!-- NUEVO: Galería de fotos -->
       <div id="gallery" class="gallery">
         <h3>📸 Mis Fotos (<span id="photoCount">0</span>)</h3>
         <div id="photoGallery" class="photo-gallery"></div>

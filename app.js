@@ -13,6 +13,7 @@ const ctx = canvas.getContext("2d");
 const photoGallery = document.getElementById("photoGallery");
 const photoCount = document.getElementById("photoCount");
 const clearGalleryBtn = document.getElementById("clearGallery");
+const cameraIndicator = document.getElementById("cameraIndicator");
 
 let stream = null;
 let currentFacingMode = "environment";
@@ -55,6 +56,9 @@ async function openCamera() {
     openCameraBtn.textContent = "Cámara Activa";
     openCameraBtn.disabled = true;
 
+    // Actualizar indicador de cámara
+    updateCameraIndicator();
+
     console.log("✅ Cámara abierta");
   } catch (error) {
     console.error("❌ Error:", error);
@@ -68,6 +72,19 @@ async function switchCamera() {
     currentFacingMode === "environment" ? "user" : "environment";
   if (stream) closeCamera();
   await openCamera();
+}
+
+// Actualizar indicador de cámara
+function updateCameraIndicator() {
+  if (currentFacingMode === "environment") {
+    cameraIndicator.textContent = "📷 Cámara Trasera";
+    cameraIndicator.style.background =
+      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+  } else {
+    cameraIndicator.textContent = "🤳 Cámara Frontal";
+    cameraIndicator.style.background =
+      "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)";
+  }
 }
 
 // Tomar foto
@@ -119,10 +136,13 @@ function savePhoto() {
 
   // Guardar en galería
   const timestamp = Date.now();
+  const cameraType =
+    currentFacingMode === "environment" ? "Trasera" : "Frontal";
   const photoData = {
     id: timestamp,
     data: currentImageDataURL,
     date: new Date().toLocaleString("es-MX"),
+    camera: cameraType,
   };
 
   photos.push(photoData);
@@ -131,8 +151,6 @@ function savePhoto() {
 
   // Descargar archivo
   const link = document.createElement("a");
-  const cameraType =
-    currentFacingMode === "environment" ? "trasera" : "frontal";
   link.download = `foto-${cameraType}-${timestamp}.jpg`;
   link.href = currentImageDataURL;
   document.body.appendChild(link);
@@ -161,12 +179,17 @@ function addPhotoToGallery(photoData) {
   deleteBtn.innerHTML = "🗑️";
   deleteBtn.onclick = () => deletePhoto(photoData.id);
 
+  const cameraIcon = document.createElement("span");
+  cameraIcon.className = "camera-icon";
+  cameraIcon.textContent = photoData.camera === "Trasera" ? "📷" : "🤳";
+
   const date = document.createElement("span");
   date.className = "photo-date";
   date.textContent = photoData.date;
 
   photoItem.appendChild(img);
   photoItem.appendChild(deleteBtn);
+  photoItem.appendChild(cameraIcon);
   photoItem.appendChild(date);
 
   // Agregar al inicio (más reciente primero)

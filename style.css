@@ -88,6 +88,19 @@ h1 {
   margin-top: 20px;
 }
 
+.camera-indicator {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
 video {
   width: 100%;
   height: auto;
@@ -134,7 +147,7 @@ video {
   margin-top: 20px;
 }
 
-/* NUEVO: Estilos de galería */
+/* Galería */
 .gallery {
   margin-top: 30px;
   padding-top: 20px;
@@ -206,11 +219,23 @@ video {
   align-items: center;
   justify-content: center;
   transition: all 0.3s;
+  z-index: 10;
 }
 
 .delete-photo-btn:hover {
   background: #f44336;
   transform: scale(1.1);
+}
+
+.camera-icon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 .photo-date {
@@ -242,5 +267,10 @@ video {
   .photo-item {
     width: 120px;
     height: 160px;
+  }
+
+  .camera-indicator {
+    font-size: 16px;
+    padding: 10px;
   }
 }
